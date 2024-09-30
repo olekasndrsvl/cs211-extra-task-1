@@ -44,7 +44,8 @@ double hours_difference(double time_1, double time_2)
 
 double to_float_hours(int hours, int minutes, int seconds)
 {
-
+    assert((minutes >= 0) && (minutes < 60));
+    assert((seconds >= 0) && (seconds < 60));
     return static_cast<double>(hours + minutes / 60 + seconds / 3600);
     /*
         Return the total number of hours in the specified number
@@ -65,6 +66,10 @@ double to_float_hours(int hours, int minutes, int seconds)
 
 double to_24_hour_clock(double hours)
 {
+    assert(hours >= 0);
+    double hour;
+    double minute = modf(hours, &hour);
+    return int(hour) % 24 + minute;
     /*
         hours is a number of hours since midnight. Return the
         hour as seen on a 24-hour clock.
@@ -91,6 +96,8 @@ double to_24_hour_clock(double hours)
         
     */
 }
+
+
 
 /*
     Implement three functions
